@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewiz Team - StarsGift Bot обучение</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #ccc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #111;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        /* Главная страница */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23111"/><path d="M0 0L100 100M100 0L0 100" stroke="%23333" stroke-width="1"/></svg>');
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #ccc;
+            transform: translateY(-3px);
+        }
+        
+        /* Секция с мануалами */
+        .manuals {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+        
+        .manuals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .manual-card {
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid #333;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .manual-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .manual-image {
+            height: 200px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            background-image: url('images/starsgift-preview.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .manual-content {
+            padding: 20px;
+        }
+        
+        .manual-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .manual-description {
+            color: #999;
+            margin-bottom: 15px;
+        }
+        
+        .manual-link {
+            display: inline-block;
+            color: #fff;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 2px;
+        }
+        
+        /* Страница мануала */
+        .manual-page {
+            padding: 50px 0;
+            display: none;
+        }
+        
+        .manual-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .manual-page-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .manual-meta {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .manual-content-page {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .manual-content-page p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .manual-content-page h2 {
+            margin: 40px 0 20px;
+            color: #fff;
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .manual-content-page ul, .manual-content-page ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            color: #ccc;
+        }
+        
+        .manual-content-page li {
+            margin-bottom: 10px;
+        }
+        
+        .manual-image-full {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+        }
+        
+        .manual-image-full img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: bold;
+            padding: 8px 16px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .note {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-left: 4px solid #fff;
+            margin: 20px 0;
+            color: #ccc;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #111;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-text {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .image-placeholder {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="logo">REWIZ TEAM</div>
+        </div>
+    </header>
+
+    <!-- Главная страница -->
+    <section class="hero">
+        <div class="container">
+            <h1>Обучение заработку с Rewiz Team</h1>
+            <p>Профессиональные мануалы и руководства для эффективного заработка в интернете. Изучайте проверенные методы и увеличивайте свой доход.</p>
+            <a href="#manuals" class="cta-button">Смотреть мануалы</a>
+        </div>
+    </section>
+
+    <!-- Секция с мануалами -->
+    <section class="manuals" id="manuals">
+        <div class="container">
+            <h2 class="section-title">Доступные мануалы</h2>
+            <div class="manuals-grid">
+                <!-- Мануал StarsGift -->
+                <div class="manual-card" data-manual="starsgift">
+                    <div class="manual-image">
+                        <!-- Фон установлен через CSS -->
+                    </div>
+                    <div class="manual-content">
+                        <h3 class="manual-title">Заработок на StarsGift Bot</h3>
+                        <p class="manual-description">Полное руководство по работе с ботом StarsGift и админ командами для эффективного заработка.</p>
+                        <a href="#" class="manual-link" data-manual-link="starsgift">Читать мануал</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Страница мануала StarsGift -->
+    <section class="manual-page" id="manual-starsgift">
+        <div class="container">
+            <a href="#" class="back-button" data-back-button>← Назад к мануалам</a>
+            <div class="manual-header">
+                <h1 class="manual-page-title">Тутор по боту StarsGift и админ командам</h1>
+                <div class="manual-meta">Обновлено: 13.11.2025 | Уровень: Начинающий</div>
+            </div>
+            <div class="manual-content-page">
+                <p>Заходим в бота и нажимаем "СТАРТ"</p>
+                
+                <div class="manual-image-full">
+                    <img src="images/start.png" alt="Старт бота StarsGift">
+                </div>
+                
+                <p>После захода нажимаешь на кнопку старт и получаем сообщение которое получают 🦣, но нам оно не к чему.</p>
+                
+                <h2>Получение админ доступа</h2>
+                <p>Для получения админ доступа прописываешь команду /rewiz_team</p>
+                
+                <div class="manual-image-full">
+                    <img src="images/team.png" alt="Команда /unityteam">
+                </div>
+                
+                <p>После ввода данной команды вы получаете админ доступ к оплатам, тоесть можете оплатить нажав на кнопку без настоящей оплаты.</p>
+                
+                <div class="manual-image-full">
+                    <img src="images/admin.png" alt="Админ доступ">
+                </div>
+                
+                <h2>Процесс работы с клиентом</h2>
+                <p>Когда жертва найдена: отправьте ей сообщение с приветствием и извинениями за беспокойство. Спросите, продаёт ли она свой NFT-подарок в профиле. Дождитесь ответа, узнайте цену и валюту, в которой он принимает платежи. Немного манипулируйте ценой и после согласования отправьте ему бота с просьбой создать сделку. После получения ссылки на сделку вы по ней присоеденяетесь к сделке.</p>
+                
+                <div class="manual-image-full">
+                    <img src="images/oplata.png" alt="Оплата сделки">
+                </div>
+                
+                <p>Если вы уже получили доступ, ждем 1-2 минуты и подтверждаем оплату сделки кнопкой [Подтвердить оплату]</p>
+                
+                <div class="manual-image-full">
+                    <img src="images/opl.png" alt="Подтверждение оплаты">
+                </div>
+                
+                <p>🦣 получает сообщение о том что вы подтвердили оплату и вам остается ожидать отправки им подарка менеджеру @SunGiftsHelper (попросите сверить юз у жертвы, чтобы она не скинула подарок фейку)</p>
+                
+                <div class="note">
+                    <strong>ВАЖНО:</strong> После того как мамонт отправил подарок и подтверждает передачу подарка попросите у него скрин о том что он передал подарок [вы можете использовать данный скрин для отзывов] НО ВАМ ОБЕЗАТЕЛЬНО НУЖНО ЧТОБЫ СКИНУЛИ СКРИН!!! ДЛЯ ТОГО ЧТОБЫ ПОЛУЧИТЬ ВЫПЛАТУ!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">REWIZ TEAM</div>
+            <p class="footer-text">© 2025 Rewiz Team. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript для переключения между мануалами
+        document.addEventListener('DOMContentLoaded', function() {
+            const manualLinks = document.querySelectorAll('[data-manual-link]');
+            const backButton = document.querySelector('[data-back-button]');
+            const manualsSection = document.getElementById('manuals');
+            
+            manualLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const manualId = this.getAttribute('data-manual-link');
+                    const manualPage = document.getElementById(`manual-${manualId}`);
+                    
+                    // Скрываем все мануалы и показываем нужный
+                    document.querySelectorAll('.manual-page').forEach(page => {
+                        page.style.display = 'none';
+                    });
+                    
+                    manualsSection.style.display = 'none';
+                    manualPage.style.display = 'block';
+                    
+                    // Прокрутка к верху страницы
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Скрываем все мануалы и показываем главную страницу
+                document.querySelectorAll('.manual-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                manualsSection.style.display = 'block';
+                
+                // Прокрутка к секции мануалов
+                window.scrollTo(0, manualsSection.offsetTop - 50);
+            });
+        });
+    </script>
+</body>
+</html>
